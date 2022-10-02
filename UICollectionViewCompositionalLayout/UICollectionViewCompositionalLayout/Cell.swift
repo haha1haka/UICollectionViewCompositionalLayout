@@ -21,9 +21,13 @@ class Cell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .systemPink
+        layer.cornerRadius = 8
+//        layer.masksToBounds = true
+        
         setHierarchy()
         setConstrains()
     }
+    
     required init?(coder: NSCoder) {
         fatalError("init has not been implement")
     }

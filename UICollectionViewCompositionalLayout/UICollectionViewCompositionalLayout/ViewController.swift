@@ -22,7 +22,8 @@ extension ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //gridCollectionViewLayout()
-        twoColumnGrid()
+        //twoColumnGridCollectionViewLayout()
+        
         configureCollectionViewDataSource()
         applySnapShot()
     }
@@ -40,7 +41,7 @@ extension ViewController {
         let section = NSCollectionLayoutSection(group: group)
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
     }
-    func twoColumnGrid() {
+    func twoColumnGridCollectionViewLayout() {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 3, bottom: 3, trailing: 3)
@@ -51,6 +52,7 @@ extension ViewController {
         let section = NSCollectionLayoutSection(group: group)
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
     }
+
 }
 
 extension ViewController {
