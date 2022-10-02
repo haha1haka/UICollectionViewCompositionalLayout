@@ -23,7 +23,9 @@ extension ViewController {
         super.viewDidLoad()
         //gridCollectionViewLayout()
         //twoColumnGridCollectionViewLayout()
-        nestedGroupCollectionViewLayout()
+        //nestedGroupCollectionViewLayout()
+        reversedNestedGroupCollectionViewLayout()
+//        variousSections()
         configureCollectionViewDataSource()
         applySnapShot()
     }
@@ -80,6 +82,40 @@ extension ViewController {
                                                             subitems: [leftItem, rightGroup])
         let section = NSCollectionLayoutSection(group: totalGroup)
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
+    }
+    
+    
+    
+    
+    func reversedNestedGroupCollectionViewLayout() {
+        let leftItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(2/3),
+                                                  heightDimension: .fractionalHeight(1.0))
+        let leftItem = NSCollectionLayoutItem(layoutSize: leftItemSize)
+        leftItem.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 3, bottom: 3, trailing: 3)
+        let rightItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .fractionalHeight(0.5))
+        let rightItem = NSCollectionLayoutItem(layoutSize: rightItemSize)
+        
+        
+        rightItem.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 3, bottom: 3, trailing: 3)
+        let rightGroup = NSCollectionLayoutGroup.vertical(layoutSize:
+                                                            NSCollectionLayoutSize(
+                                                                widthDimension: .fractionalWidth(1/3),
+                                                                heightDimension: .fractionalHeight(1.0)),
+                                                          subitem: rightItem,
+                                                          count: 2)
+        
+        
+        let toalGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
+                                                   heightDimension: .fractionalWidth(4/9))
+        let totalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: toalGroupSize,
+                                                            subitems: [rightGroup, leftItem])
+        let section = NSCollectionLayoutSection(group: totalGroup)
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
+    }
+    
+    func variousSections() {
+        
     }
 
 }
