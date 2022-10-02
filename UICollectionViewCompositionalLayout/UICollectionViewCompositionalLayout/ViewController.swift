@@ -21,15 +21,14 @@ class ViewController: UIViewController {
 extension ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionViewLayout()
+        //gridCollectionViewLayout()
+        twoColumnGrid()
         configureCollectionViewDataSource()
         applySnapShot()
     }
 }
-
 extension ViewController {
-    
-    func configureCollectionViewLayout() {
+    func gridCollectionViewLayout() {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.2),
                                               heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
@@ -41,6 +40,21 @@ extension ViewController {
         let section = NSCollectionLayoutSection(group: group)
         collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
     }
+    func twoColumnGrid() {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 3, leading: 3, bottom: 3, trailing: 3)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(0.2))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize,
+                                                       subitem: item,
+                                                       count: 2)
+        let section = NSCollectionLayoutSection(group: group)
+        collectionView.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
+    }
+}
+
+extension ViewController {
+    
     func configureCollectionViewDataSource() {
         let cellRegisteration = UICollectionView.CellRegistration<Cell, Int> { cell, indexPath, itemidentifier in
             cell.label.text = itemidentifier.description
